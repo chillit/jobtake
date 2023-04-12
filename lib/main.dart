@@ -3,8 +3,8 @@ import 'package:jobtake/userPage.dart';
 
 void main() {
   print("hello");
-  print("212");
   runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
 }
@@ -79,6 +79,28 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text("HEHE"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: (){
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context){
+                      return SizedBox(
+                        height:400,
+                        child:Center(
+                          child: ElevatedButton(
+                            child: const Text("Close"),
+                            onPressed: (){
+                              Navigator.pop(context);
+                            },
+                          )
+                        )
+                      );
+                    });
+              },
+              icon: Icon(Icons.filter_alt_rounded))
+        ],
+
       ),
       body: ListView.builder(
         itemCount: users.length,
