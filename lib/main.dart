@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:jobtake/userPage.dart';
-import 'package:jobtake/resume.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +15,7 @@ void main() async {
   runApp(MaterialApp(
     title: 'Take a job',
     debugShowCheckedModeBanner: false,
-    home: resume(),
+    home: MyApp(),
   ));
 }
 
@@ -47,20 +46,20 @@ class User {
   final List<dynamic> university;
 
   const User({
-    required this.speciality,/*-*/
-    required this.age,/*--*/
-    required this.country,/*-*/
-    required this.courses,/*-*/
-    required this.date,/*--*/
-    required this.email,/*-*/
+    required this.speciality,
+    required this.age,
+    required this.country,
+    required this.courses,
+    required this.date,
+    required this.email,
     required this.endEducation,
-    required this.fio,/*-*/
-    required this.livingPlace,/*-*/
-    required this.phone,/*-*/
+    required this.fio,
+    required this.livingPlace,
+    required this.phone,
     required this.salary,
-    required this.sex,/*-*/
+    required this.sex,
     required this.startEducation,
-    required this.university,/*-*/
+    required this.university,
   });
 }
 
