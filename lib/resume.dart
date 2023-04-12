@@ -13,7 +13,23 @@ class _HomeState extends State<resume> {
   int _value = 1;
   final formKey = GlobalKey<FormState>(); //key for form
   String name = "";
-  var a = [];
+
+  //EDUCATIONS
+  List<TextFormField> educations = [];
+  List<TextEditingController> eFieldController = [];
+
+  //UNIVERSITYS
+  List<TextFormField> universitys = [];
+  List<TextEditingController> uFieldController = [];
+
+  //COURSES
+  List<TextFormField> courses = [];
+  List<TextEditingController> cFieldController = [];
+
+  //COURSES
+  List<TextFormField> expirience = [];
+  List<TextEditingController> exFieldController = [];
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -189,26 +205,11 @@ class _HomeState extends State<resume> {
                       ),
                       TextFormField(
                         decoration: InputDecoration(
-                            icon: Icon(Icons.work_history_outlined),
+                            icon: Icon(Icons.attach_money),
                             enabledBorder: UnderlineInputBorder(
                               //<-- SEE HERE
                               borderSide:
                                   BorderSide(width: 1, color: Colors.blue),
-                            ),
-                            labelText: "Введите вашу специальность"),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Введите вашу специальность";
-                          }
-                        },
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            icon: Icon(Icons.attach_money),
-                            enabledBorder: UnderlineInputBorder(
-                              //<-- SEE HERE
-                              borderSide: BorderSide(
-                                  width: 1, color: Colors.blue),
                             ),
                             labelText: "Желаемая ЗП"),
                         validator: (value) {
@@ -223,8 +224,8 @@ class _HomeState extends State<resume> {
                             icon: Icon(Icons.work_outline),
                             enabledBorder: UnderlineInputBorder(
                               //<-- SEE HERE
-                              borderSide: BorderSide(
-                                  width: 1, color: Colors.blue),
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.blue),
                             ),
                             labelText: "Желаемая Должность"),
                         validator: (value) {
@@ -234,23 +235,123 @@ class _HomeState extends State<resume> {
                           }
                         },
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            icon: Icon(Icons.school_outlined),
-                            enabledBorder: UnderlineInputBorder(
-                              //<-- SEE HERE
-                              borderSide:
-                                  BorderSide(width: 1, color: Colors.blue),
-                            ),
-                            labelText: "Введите университет законченный вами"),
-                        validator: (value) {
-                          print(value);
-                          if (value!.isEmpty) {
-                            return "Введите университет законченный вами";
-                          }
-                        },
+                      //EDUCATIONS
+                      Divider(
+                        color: Colors.grey[700],
                       ),
-                      TextFormField(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
+                          "Образования:",
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      ...educations,
+                      Row(
+                        children: [
+                          Flexible(
+                              flex: 1,
+                              child: ElevatedButton(
+                                child: Text("+"),
+                                onPressed: () {
+                                  eFieldController.add(TextEditingController());
+                                  setState(() {
+                                    educations.add(TextFormField(
+                                      controller: eFieldController.last,
+                                      decoration: InputDecoration(
+                                          icon: Icon(Icons.school_outlined),
+                                          enabledBorder: UnderlineInputBorder(
+                                            //<-- SEE HERE
+                                            borderSide: BorderSide(
+                                                width: 1, color: Colors.blue),
+                                          ),
+                                          labelText:
+                                              "Введите ваше оброзование"),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Введите ваше оброзование";
+                                        }
+                                      },
+                                    ));
+                                  });
+                                },
+                              )),
+                          Flexible(
+                              flex: 1,
+                              child: ElevatedButton(
+                                child: Text("-"),
+                                onPressed: () {
+                                  if (!educations.isEmpty) {
+                                    setState(() {
+                                      educations.removeLast();
+                                      eFieldController.removeLast();
+                                    });
+                                  }
+                                },
+                              )),
+                        ],
+                      ),
+                      //UNIVERSITYS
+                      Divider(
+                        color: Colors.grey[700],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
+                          "Учебные заведения:",
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      ...universitys,
+                      Row(
+                        children: [
+                          Flexible(
+                              flex: 1,
+                              child: ElevatedButton(
+                                child: Text("+"),
+                                onPressed: () {
+                                  uFieldController.add(TextEditingController());
+                                  setState(() {
+                                    universitys.add(TextFormField(
+                                      controller: uFieldController.last,
+                                      decoration: InputDecoration(
+                                          icon: Icon(
+                                              Icons.location_city_outlined),
+                                          enabledBorder: UnderlineInputBorder(
+                                            //<-- SEE HERE
+                                            borderSide: BorderSide(
+                                                width: 1, color: Colors.blue),
+                                          ),
+                                          labelText:
+                                              "Введите учебное заведение"),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Введите учебное заведение";
+                                        }
+                                      },
+                                    ));
+                                  });
+                                },
+                              )),
+                          Flexible(
+                              flex: 1,
+                              child: ElevatedButton(
+                                child: Text("-"),
+                                onPressed: () {
+                                  if (!universitys.isEmpty) {
+                                    setState(() {
+                                      universitys.removeLast();
+                                      uFieldController.removeLast();
+                                    });
+                                  }
+                                },
+                              )),
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.grey[700],
+                      ),
+                      /*TextFormField(
                         controller: _end_date,
                         decoration: InputDecoration(
                             icon: Icon(Icons.edit_calendar_outlined),
@@ -311,21 +412,163 @@ class _HomeState extends State<resume> {
                             return "Введите год начала учебы";
                           }
                         },
+                      ),*/
+                      //COURSES
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
+                          "Курсы:",
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            icon: Icon(Icons.laptop_mac_outlined),
-                            enabledBorder: UnderlineInputBorder(
-                              //<-- SEE HERE
-                              borderSide:
-                                  BorderSide(width: 1, color: Colors.blue),
-                            ),
-                            labelText: "Введите курсы, которые вы проходили"),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Введите курсы, которые вы проходили";
-                          }
-                        },
+                      ...courses,
+                      Row(
+                        children: [
+                          Flexible(
+                              flex: 1,
+                              child: ElevatedButton(
+                                child: Text("+"),
+                                onPressed: () {
+                                  cFieldController.add(TextEditingController());
+                                  setState(() {
+                                    courses.add(TextFormField(
+                                      controller: cFieldController.last,
+                                      decoration: InputDecoration(
+                                          icon: Icon(Icons.laptop_mac_outlined),
+                                          enabledBorder: UnderlineInputBorder(
+                                            //<-- SEE HERE
+                                            borderSide: BorderSide(
+                                                width: 1, color: Colors.blue),
+                                          ),
+                                          labelText: "Введите пройденный курс"),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Введите пройденный курс";
+                                        }
+                                      },
+                                    ));
+                                  });
+                                },
+                              )),
+                          Flexible(
+                              flex: 1,
+                              child: ElevatedButton(
+                                child: Text("-"),
+                                onPressed: () {
+                                  if (!courses.isEmpty) {
+                                    setState(() {
+                                      courses.removeLast();
+                                      cFieldController.removeLast();
+                                    });
+                                  }
+                                },
+                              )),
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.grey[700],
+                      ),
+                      //EXPIRIENCE
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
+                          "Опыт работы:",
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      ...expirience,
+                      Row(
+                        children: [
+                          Flexible(
+                              flex: 1,
+                              child: ElevatedButton(
+                                child: Text("+"),
+                                onPressed: () {
+                                  exFieldController
+                                      .add(TextEditingController());
+                                  setState(() {
+                                    expirience.add(TextFormField(
+                                      controller: exFieldController.last,
+                                      decoration: InputDecoration(
+                                          icon: Icon(Icons.people_outline),
+                                          enabledBorder: UnderlineInputBorder(
+                                            //<-- SEE HERE
+                                            borderSide: BorderSide(
+                                                width: 1, color: Colors.blue),
+                                          ),
+                                          labelText: "Введите организацию"),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Введите организацию";
+                                        }
+                                      },
+                                    ));
+                                  });
+
+                                  exFieldController
+                                      .add(TextEditingController());
+                                  setState(() {
+                                    expirience.add(TextFormField(
+                                      controller: exFieldController.last,
+                                      decoration: InputDecoration(
+                                          icon: Icon(Icons.work_history_outlined),
+                                          enabledBorder: UnderlineInputBorder(
+                                            //<-- SEE HERE
+                                            borderSide: BorderSide(
+                                                width: 1, color: Colors.blue),
+                                          ),
+                                          labelText: "Введите должность"),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Введите должность";
+                                        }
+                                      },
+                                    ));
+                                  });
+
+                                  exFieldController
+                                      .add(TextEditingController());
+                                  setState(() {
+                                    expirience.add(TextFormField(
+                                      controller: exFieldController.last,
+                                      decoration: InputDecoration(
+                                          icon: Icon(Icons.task_outlined),
+                                          enabledBorder: UnderlineInputBorder(
+                                            //<-- SEE HERE
+                                            borderSide: BorderSide(
+                                                width: 1, color: Colors.blue),
+                                          ),
+                                          labelText: "Введите обязанности"),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Введите обязанности";
+                                        }
+                                      },
+                                    ));
+                                  });
+                                },
+                              )),
+                          Flexible(
+                              flex: 1,
+                              child: ElevatedButton(
+                                child: Text("-"),
+                                onPressed: () {
+                                  if (!expirience.isEmpty) {
+                                    setState(() {
+                                      expirience.removeLast();
+                                      exFieldController.removeLast();
+                                      expirience.removeLast();
+                                      exFieldController.removeLast();
+                                      expirience.removeLast();
+                                      exFieldController.removeLast();
+                                    });
+                                  }
+                                },
+                              )),
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.grey[700],
                       ),
                     ],
                   ),
@@ -353,5 +596,84 @@ class _HomeState extends State<resume> {
                 Padding(padding: const EdgeInsets.only(bottom: 15)),
               ],
             )));
+  }
+}
+
+class ExpirienceFieldCtrls {
+  final organizaton = TextEditingController();
+  final job = TextEditingController();
+  final functions = TextEditingController();
+  /*const ExpirienceFieldCtrls({
+    required this.organizaton,
+    required this.job,
+    required this.functions,
+  });*/
+}
+
+class Expirience extends StatefulWidget {
+  const Expirience(
+      {super.key,
+      required this.organizaton,
+      required this.job,
+      required this.functions});
+  final TextEditingController organizaton;
+  final TextEditingController job;
+  final TextEditingController functions;
+  @override
+  State<Expirience> createState() => _ExpirienceState();
+}
+
+class _ExpirienceState extends State<Expirience> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextFormField(
+          controller: widget.organizaton,
+          decoration: InputDecoration(
+              icon: Icon(Icons.people_outline),
+              enabledBorder: UnderlineInputBorder(
+                //<-- SEE HERE
+                borderSide: BorderSide(width: 1, color: Colors.blue),
+              ),
+              labelText: "Введите организацию"),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Введите организацию";
+            }
+          },
+        ),
+        TextFormField(
+          controller: widget.job,
+          decoration: InputDecoration(
+              icon: Icon(Icons.work_history_outlined),
+              enabledBorder: UnderlineInputBorder(
+                //<-- SEE HERE
+                borderSide: BorderSide(width: 1, color: Colors.blue),
+              ),
+              labelText: "Введите должность"),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Введите должность";
+            }
+          },
+        ),
+        TextFormField(
+          controller: widget.functions,
+          decoration: InputDecoration(
+              icon: Icon(Icons.task_outlined),
+              enabledBorder: UnderlineInputBorder(
+                //<-- SEE HERE
+                borderSide: BorderSide(width: 1, color: Colors.blue),
+              ),
+              labelText: "Введите обязанности"),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Введите обязанности";
+            }
+          },
+        ),
+      ],
+    );
   }
 }
