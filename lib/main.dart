@@ -2,22 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jobtake/userPage.dart';
 
 void main() {
-  print("hello");
-  print("212");
   runApp(MaterialApp(
-    home: MyApp(),
+    home: MyHomePage(),
   ));
 }
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MyHomePage();
-  }
-  }
 
 class User{
   final String username;
