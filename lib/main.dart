@@ -15,7 +15,7 @@ void main() async {
   print("hello");
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+    home: resume(),
   ));
 }
 
