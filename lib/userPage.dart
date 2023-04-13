@@ -54,8 +54,8 @@ class UserPage extends StatelessWidget {
                   CircleAvatar(
                     radius: 50,
                     backgroundColor: kSecondaryColor,
-                    backgroundImage:
-                    AssetImage('assets/images/student_profile.jpeg'),
+                    /*backgroundImage:
+                    AssetImage('assets/images/student_profile.jpeg'),*/
                   ),
                   kWidthSizedBox,
                   Column(
