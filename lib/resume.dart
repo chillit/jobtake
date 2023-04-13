@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,8 +9,15 @@ class resume extends StatefulWidget {
 
 class _HomeState extends State<resume> {
   TextEditingController _date = TextEditingController();
-  TextEditingController _end_date = TextEditingController();
-  TextEditingController _start_date = TextEditingController();
+  TextEditingController fio = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController livingPlace = TextEditingController();
+  TextEditingController country = TextEditingController();
+  TextEditingController salary = TextEditingController();
+  TextEditingController desiredJob = TextEditingController();
+  TextEditingController aquiredAbilities= TextEditingController();
+
   int _value = 1;
   final formKey = GlobalKey<FormState>(); //key for form
   String name = "";
@@ -26,7 +34,7 @@ class _HomeState extends State<resume> {
   List<TextFormField> courses = [];
   List<TextEditingController> cFieldController = [];
 
-  //COURSES
+  //EXPIRIENCE  
   List<TextFormField> expirience = [];
   List<TextEditingController> exFieldController = [];
 
@@ -54,6 +62,7 @@ class _HomeState extends State<resume> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextFormField(
+                        controller: fio,
                         decoration: InputDecoration(
                             icon: Icon(Icons.person),
                             enabledBorder: UnderlineInputBorder(
@@ -69,6 +78,7 @@ class _HomeState extends State<resume> {
                         },
                       ),
                       TextFormField(
+                        controller: email,
                         decoration: InputDecoration(
                             icon: Icon(Icons.email_outlined),
                             enabledBorder: UnderlineInputBorder(
@@ -128,6 +138,7 @@ class _HomeState extends State<resume> {
                         ],
                       ),
                       TextFormField(
+                        controller: phone,
                         decoration: InputDecoration(
                             icon: Icon(Icons.smartphone_outlined),
                             enabledBorder: UnderlineInputBorder(
@@ -174,6 +185,7 @@ class _HomeState extends State<resume> {
                         },
                       ),
                       TextFormField(
+                        controller: country,
                         decoration: InputDecoration(
                             icon: Icon(Icons.document_scanner_outlined),
                             enabledBorder: UnderlineInputBorder(
@@ -189,6 +201,7 @@ class _HomeState extends State<resume> {
                         },
                       ),
                       TextFormField(
+                        controller: livingPlace,
                         decoration: InputDecoration(
                             icon: Icon(Icons.house_outlined),
                             enabledBorder: UnderlineInputBorder(
@@ -204,6 +217,7 @@ class _HomeState extends State<resume> {
                         },
                       ),
                       TextFormField(
+                        controller: salary,
                         decoration: InputDecoration(
                             icon: Icon(Icons.attach_money),
                             enabledBorder: UnderlineInputBorder(
@@ -220,6 +234,7 @@ class _HomeState extends State<resume> {
                         },
                       ),
                       TextFormField(
+                        controller: desiredJob,
                         decoration: InputDecoration(
                             icon: Icon(Icons.work_outline),
                             enabledBorder: UnderlineInputBorder(
@@ -236,9 +251,6 @@ class _HomeState extends State<resume> {
                         },
                       ),
                       //EDUCATIONS
-                      Divider(
-                        color: Colors.grey[700],
-                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Text(
@@ -252,7 +264,7 @@ class _HomeState extends State<resume> {
                           Flexible(
                               flex: 1,
                               child: ElevatedButton(
-                                child: Text("+"),
+                                child: Text("+", style: TextStyle(fontSize:30)),
                                 onPressed: () {
                                   eFieldController.add(TextEditingController());
                                   setState(() {
@@ -279,7 +291,7 @@ class _HomeState extends State<resume> {
                           Flexible(
                               flex: 1,
                               child: ElevatedButton(
-                                child: Text("-"),
+                                child: Text("-", style: TextStyle(fontSize:30)),
                                 onPressed: () {
                                   if (!educations.isEmpty) {
                                     setState(() {
@@ -308,7 +320,7 @@ class _HomeState extends State<resume> {
                           Flexible(
                               flex: 1,
                               child: ElevatedButton(
-                                child: Text("+"),
+                                child: Text("+", style: TextStyle(fontSize:30)),
                                 onPressed: () {
                                   uFieldController.add(TextEditingController());
                                   setState(() {
@@ -336,7 +348,7 @@ class _HomeState extends State<resume> {
                           Flexible(
                               flex: 1,
                               child: ElevatedButton(
-                                child: Text("-"),
+                                child: Text("-", style: TextStyle(fontSize:30)),
                                 onPressed: () {
                                   if (!universitys.isEmpty) {
                                     setState(() {
@@ -427,7 +439,7 @@ class _HomeState extends State<resume> {
                           Flexible(
                               flex: 1,
                               child: ElevatedButton(
-                                child: Text("+"),
+                                child: Text("+", style: TextStyle(fontSize:30)),
                                 onPressed: () {
                                   cFieldController.add(TextEditingController());
                                   setState(() {
@@ -453,7 +465,7 @@ class _HomeState extends State<resume> {
                           Flexible(
                               flex: 1,
                               child: ElevatedButton(
-                                child: Text("-"),
+                                child: Text("-", style: TextStyle(fontSize:30)),
                                 onPressed: () {
                                   if (!courses.isEmpty) {
                                     setState(() {
@@ -482,7 +494,7 @@ class _HomeState extends State<resume> {
                           Flexible(
                               flex: 1,
                               child: ElevatedButton(
-                                child: Text("+"),
+                                child: Text("+", style: TextStyle(fontSize:30)),
                                 onPressed: () {
                                   exFieldController
                                       .add(TextEditingController());
@@ -551,7 +563,7 @@ class _HomeState extends State<resume> {
                           Flexible(
                               flex: 1,
                               child: ElevatedButton(
-                                child: Text("-"),
+                                child: Text("-", style: TextStyle(fontSize:30)),
                                 onPressed: () {
                                   if (!expirience.isEmpty) {
                                     setState(() {
@@ -570,13 +582,47 @@ class _HomeState extends State<resume> {
                       Divider(
                         color: Colors.grey[700],
                       ),
+                      TextFormField(
+                                      controller: aquiredAbilities,
+                                      decoration: InputDecoration(
+                                          icon: Icon(Icons.star_border_outlined),
+                                          enabledBorder: UnderlineInputBorder(
+                                            //<-- SEE HERE
+                                            borderSide: BorderSide(
+                                                width: 1, color: Colors.blue),
+                                          ),
+                                          labelText: "Приобретенные навыки"),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Приобретенные навыки";
+                                        }
+                                      },
+                                    ),
                     ],
                   ),
                 ),
                 Padding(padding: const EdgeInsets.only(bottom: 20)),
                 GestureDetector(
                   onTap: () {
-                    formKey.currentState!.validate();
+                    if(formKey.currentState!.validate()){
+                      FirebaseFirestore.instance.collection('people').add({
+                        'fio' : fio.text,
+                        'email' : email.text,
+                        'sex' : _value == 1 ? 'male' : 'female',
+                        'phone' : phone.text,
+                        'birthDate' : _date.text,
+                        'age' : calculateAge(DateTime.parse(_date.text)),
+                        'country' : country.text,
+                        'livingPlace' : livingPlace.text,
+                        'salary' : salary.text,
+                        'desiredJob' : desiredJob.text,
+                        'educations' : eFieldController.map((e) => e.text).toList(),
+                        'universitys' : uFieldController.map((e) => e.text).toList(),
+                        'courses' : cFieldController.map((e) => e.text).toList(),
+                        'expirience' : getExpirience(exFieldController),
+                        'aquiredAbilities' : aquiredAbilities.text,
+                      });
+                    }
                   },
                   child: Container(
                     width: 200,
@@ -599,81 +645,26 @@ class _HomeState extends State<resume> {
   }
 }
 
-class ExpirienceFieldCtrls {
-  final organizaton = TextEditingController();
-  final job = TextEditingController();
-  final functions = TextEditingController();
-  /*const ExpirienceFieldCtrls({
-    required this.organizaton,
-    required this.job,
-    required this.functions,
-  });*/
-}
-
-class Expirience extends StatefulWidget {
-  const Expirience(
-      {super.key,
-      required this.organizaton,
-      required this.job,
-      required this.functions});
-  final TextEditingController organizaton;
-  final TextEditingController job;
-  final TextEditingController functions;
-  @override
-  State<Expirience> createState() => _ExpirienceState();
-}
-
-class _ExpirienceState extends State<Expirience> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(
-          controller: widget.organizaton,
-          decoration: InputDecoration(
-              icon: Icon(Icons.people_outline),
-              enabledBorder: UnderlineInputBorder(
-                //<-- SEE HERE
-                borderSide: BorderSide(width: 1, color: Colors.blue),
-              ),
-              labelText: "Введите организацию"),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "Введите организацию";
-            }
-          },
-        ),
-        TextFormField(
-          controller: widget.job,
-          decoration: InputDecoration(
-              icon: Icon(Icons.work_history_outlined),
-              enabledBorder: UnderlineInputBorder(
-                //<-- SEE HERE
-                borderSide: BorderSide(width: 1, color: Colors.blue),
-              ),
-              labelText: "Введите должность"),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "Введите должность";
-            }
-          },
-        ),
-        TextFormField(
-          controller: widget.functions,
-          decoration: InputDecoration(
-              icon: Icon(Icons.task_outlined),
-              enabledBorder: UnderlineInputBorder(
-                //<-- SEE HERE
-                borderSide: BorderSide(width: 1, color: Colors.blue),
-              ),
-              labelText: "Введите обязанности"),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "Введите обязанности";
-            }
-          },
-        ),
-      ],
-    );
+int calculateAge(DateTime birthDate){
+  DateTime currentDate = DateTime.now();
+  int age = currentDate.year - birthDate.year;
+  if(birthDate.month > currentDate.month){
+    age--;
+  }else if(birthDate.month == currentDate.month && birthDate.day > currentDate.day){
+    age--;
   }
+  return age;
+}
+
+List<Map<String,String>> getExpirience(List<TextEditingController> exp){
+  List<Map<String,String>> result = [];
+  for(int i = 0;i < exp.length;i += 3){
+    var bufer = {
+      'organization' : exp[i].text,
+      'job' : exp[i+1].text,
+      'functions' : exp[i+2].text
+    };
+    result.add(bufer);
+  }
+  return result;
 }
