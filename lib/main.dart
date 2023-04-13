@@ -45,24 +45,24 @@ class User {
   final List<dynamic> educations;
   final List<dynamic> universitys;
   final List<dynamic> courses;
-  final List<Map<String, String>> expirience;
+  final List<dynamic> expirience;
 
   const User({
     required this.age,
     required this.country,
-    required this.courses,
+    this.courses = const [],
     required this.email,
     required this.fio,
     required this.livingPlace,
     required this.phone,
     required this.salary,
     required this.sex,
-    required this.universitys,
+    this.universitys = const [],
     required this.aquiredAbilities,
     required this.birthDate,
     required this.desiredJob,
-    required this.educations,
-    required this.expirience,
+    this.educations = const [],
+    this.expirience = const [],
   });
 }
 
@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   var user = User(
                     age: snapshot.data!.docs[index].get("age"),
                     country: snapshot.data!.docs[index].get("country"),
-                    courses: snapshot.data!.docs[index].get("courses"),
+                    courses: snapshot.data!.docs[index].data().containsKey("courses") ? snapshot.data!.docs[index].get("courses") : [],
                     birthDate: snapshot.data!.docs[index].get("birthDate"),
                     email: snapshot.data!.docs[index].get("email"),
                     fio: snapshot.data!.docs[index].get("fio"),
@@ -120,12 +120,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     phone: snapshot.data!.docs[index].get("phone"),
                     salary: snapshot.data!.docs[index].get("salary"),
                     sex: snapshot.data!.docs[index].get("sex"),
-                    universitys: snapshot.data!.docs[index].get("universitys"),
+                    universitys: snapshot.data!.docs[index].data().containsKey("universitys") ? snapshot.data!.docs[index].get("universitys") : [],
                     aquiredAbilities:
                         snapshot.data!.docs[index].get("aquiredAbilities"),
                     desiredJob: snapshot.data!.docs[index].get("desiredJob"),
-                    educations: snapshot.data!.docs[index].get("educations"),
-                    expirience: snapshot.data!.docs[index].get("expirience"),
+                    educations: snapshot.data!.docs[index].data().containsKey("educations") ? snapshot.data!.docs[index].get("educations") : [],
+                    expirience: snapshot.data!.docs[index].data().containsKey("expirience") ? snapshot.data!.docs[index].get("expirience") : [],
                   );
                   return Card(
                       child: ListTile(
