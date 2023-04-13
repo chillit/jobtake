@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:jobtake/main.dart';
 
 class resume extends StatefulWidget {
   @override
@@ -50,6 +51,14 @@ class _HomeState extends State<resume> {
           centerTitle: true,
           backgroundColor: Colors.blue,
           elevation: 0,
+          actions: [
+            GestureDetector(
+              child: Text('Режим админа'),
+              onTap: (){
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MyHomePage()), (route) => true);
+              },
+            )
+          ],
         ),
         backgroundColor: Color(0xFFffffff),
         body: SingleChildScrollView(
