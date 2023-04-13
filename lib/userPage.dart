@@ -47,11 +47,9 @@ class UserPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: kSecondaryColor,
-                      backgroundImage:
-                      AssetImage('assets/images/student_profile.jpeg'),
+                    Icon(
+                      Icons.person,
+                      size:80,
                     ),
                     kWidthSizedBox,
                     Column(
@@ -83,8 +81,8 @@ class UserPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ProfileDetailRow(title: "Университет", value:user.fio,),
-                  ProfileDetailRow(title: 'Курсы', value: user.fio),
+                  ProfileDetailRow(title: "Университет", value:user.birthDate),
+                  ProfileDetailRow(title: 'Курсы', value: user.birthDate),
                 ],
               ),
               sizedBox,
