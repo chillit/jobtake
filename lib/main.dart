@@ -45,7 +45,7 @@ class User {
   final List<dynamic> educations;
   final List<dynamic> universitys;
   final List<dynamic> courses;
-  final List<Map<String, String>> expirience;
+  final List<dynamic> expirience;
 
   const User({
     required this.age,
