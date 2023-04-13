@@ -660,7 +660,7 @@ class _HomeState extends State<resume> {
                     ),
                     child: Center(
                       child: Text(
-                        'Отправить ${timerCount}',
+                        'Отправить',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
