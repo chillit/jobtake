@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:jobtake/resume.dart';
 import 'package:jobtake/userPage.dart';
 
 void main() async {
@@ -25,41 +26,43 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MyHomePage();
+    return resume();
   }
 }
 
 class User {
-  final String speciality;
   final int age;
   final String country;
-  final List<dynamic> courses;
-  final String date;
+  final String birthDate;
   final String email;
-  final String endEducation;
   final String fio;
   final String livingPlace;
   final String phone;
   final String salary;
+  final String desiredJob;
   final String sex;
-  final String startEducation;
-  final List<dynamic> university;
+  final String aquiredAbilities;
+  final List<dynamic> educations;
+  final List<dynamic> universitys;
+  final List<dynamic> courses;
+  final List<Map<String, String>> expirience;
 
   const User({
-    required this.speciality,
     required this.age,
     required this.country,
     required this.courses,
-    required this.date,
     required this.email,
-    required this.endEducation,
     required this.fio,
     required this.livingPlace,
     required this.phone,
     required this.salary,
     required this.sex,
-    required this.startEducation,
-    required this.university,
+    required this.universitys,
+    required this.aquiredAbilities,
+    required this.birthDate,
+    required this.desiredJob,
+    required this.educations,
+    required this.expirience,
   });
 }
 
@@ -100,36 +103,34 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(
-                child: Text("There is not any resumes"),
+                child: Text("Нет резюме"),
               );
             }
             return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (BuildContext context, int index) {
                   var user = User(
-                      age: snapshot.data!.docs[index].get("age"),
-                      speciality: snapshot.data!.docs[index].get('speciality'),
-                      country: snapshot.data!.docs[index].get("country"),
-                      courses: snapshot.data!.docs[index].get("courses"),
-                      date: snapshot.data!.docs[index].get("date").toString(),
-                      email: snapshot.data!.docs[index].get("email"),
-                      endEducation: snapshot.data!.docs[index]
-                          .get("endEducation")
-                          .toString(),
-                      fio: snapshot.data!.docs[index].get("fio"),
-                      livingPlace:
-                          snapshot.data!.docs[index].get("livingPlace"),
-                      phone: snapshot.data!.docs[index].get("phone"),
-                      salary: snapshot.data!.docs[index].get("salary"),
-                      sex: snapshot.data!.docs[index].get("sex"),
-                      startEducation: snapshot.data!.docs[index]
-                          .get("startEducation")
-                          .toString(),
-                      university: snapshot.data!.docs[index].get("university"));
+                    age: snapshot.data!.docs[index].get("age"),
+                    country: snapshot.data!.docs[index].get("country"),
+                    courses: snapshot.data!.docs[index].get("courses"),
+                    birthDate: snapshot.data!.docs[index].get("birthDate"),
+                    email: snapshot.data!.docs[index].get("email"),
+                    fio: snapshot.data!.docs[index].get("fio"),
+                    livingPlace: snapshot.data!.docs[index].get("livingPlace"),
+                    phone: snapshot.data!.docs[index].get("phone"),
+                    salary: snapshot.data!.docs[index].get("salary"),
+                    sex: snapshot.data!.docs[index].get("sex"),
+                    universitys: snapshot.data!.docs[index].get("universitys"),
+                    aquiredAbilities:
+                        snapshot.data!.docs[index].get("aquiredAbilities"),
+                    desiredJob: snapshot.data!.docs[index].get("desiredJob"),
+                    educations: snapshot.data!.docs[index].get("educations"),
+                    expirience: snapshot.data!.docs[index].get("expirience"),
+                  );
                   return Card(
                       child: ListTile(
                           title: Text(user.fio),
-                          subtitle: Text(user.speciality),
+                          subtitle: Text(user.desiredJob),
                           trailing: const Icon(Icons.arrow_forward),
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
