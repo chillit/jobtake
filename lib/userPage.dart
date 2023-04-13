@@ -14,8 +14,10 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
+
       appBar: AppBar(
-        title: Text('My Profile'),
+        title: Text(user.fio),
         actions: [
           InkWell(
             onTap: () {
@@ -24,14 +26,7 @@ class UserPage extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.only(right: kDefaultPadding / 2),
               child: Row(
-                children: [
-                  Icon(Icons.report_gmailerrorred_outlined),
-                  kHalfWidthSizedBox,
-                  Text(
-                    'Report',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ),
-                ],
+                children: [],
               ),
             ),
           ),
@@ -39,82 +34,78 @@ class UserPage extends StatelessWidget {
       ),
       body: Container(
         color: kOtherColor,
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 150,
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: kBottomBorderRadius,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: kBottomBorderRadius,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundColor: kSecondaryColor,
+                      backgroundImage:
+                      AssetImage('assets/images/student_profile.jpeg'),
+                    ),
+                    kWidthSizedBox,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          user.fio,
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
+                        Text('Специальность | ${user.desiredJob}',
+                            style: Theme.of(context).textTheme.subtitle2),
+                        Text('Пол | ${user.sex}',
+                            style: Theme.of(context).textTheme.subtitle2),
+                      ],
+                    )
+                  ],
+                ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              sizedBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundColor: kSecondaryColor,
-                    /*backgroundImage:
-                    AssetImage('assets/images/student_profile.jpeg'),*/
-                  ),
-                  kWidthSizedBox,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Aisha Mirza',
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                      Text('Rating:1987 | Leaderboard:4',
-                          style: Theme.of(context).textTheme.subtitle2),
-                    ],
-                  )
+                  ProfileDetailRow(
+                      title: 'country', value: user.country),
+                  ProfileDetailRow(title:"Место проживания:", value: user.livingPlace),
                 ],
               ),
-            ),
-            sizedBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(
-                    title: 'Number', value: '2020-ASDF-2021'),
-                ProfileDetailRow(title: 'Rating', value: '2020-2021'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(title: 'Grade', value: 'X-II'),
-                ProfileDetailRow(title: 'Questions', value: '000126'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(
-                    title: 'Date of Birth', value: '1 Aug, 2020'),
-                ProfileDetailRow(title: 'Leaderboard rating', value: '3 May 1998'),
-              ],
-            ),
-            sizedBox,
-            ProfileDetailColumn(
-              title: 'Email',
-              value: 'aisha12@gmail.com',
-            ),
-            ProfileDetailColumn(
-              title: 'School',
-              value: 'John Mirza',
-            ),
-            ProfileDetailColumn(
-              title: 'IDK',
-              value: 'Angelica Mirza',
-            ),
-            ProfileDetailColumn(
-              title: 'Phone Number',
-              value: '+923066666666',
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ProfileDetailRow(title: "Университет", value:user.fio,),
+                  ProfileDetailRow(title: 'Курсы', value: user.fio),
+                ],
+              ),
+              sizedBox,
+              ProfileDetailColumn(
+                title: 'Электронная почта',
+                value: user.email,
+              ),
+              ProfileDetailColumn(
+                title: 'Дата рождения',
+                value: user.birthDate,
+              ),
+              ProfileDetailColumn(
+                title: 'Желаемая зарплата',
+                value: user.salary,
+              ),
+              ProfileDetailColumn(
+                title: 'Номер телефона',
+                value: '+923066666666',
+              ),
+            ],
+          ),
         ),
       ),
     );

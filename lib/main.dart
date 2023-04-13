@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:jobtake/resume.dart';
 import 'package:jobtake/userPage.dart';
+import 'package:flutter/foundation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ void main() async {
   runApp(MaterialApp(
     title: 'Take a job',
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+    home: kIsWeb? resume(): MyHomePage(),
   ));
 }
 
